@@ -1,10 +1,13 @@
+import os
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 
-from config import TELEGRAM_TOKEN
 from recommender import get_investment_advice
 from scheduler import start_scheduler
 from crypto_price import get_dollar_price, get_bitcoin_price
+
+# دریافت توکن از محیط سیستم (GitHub Secrets)
+TELEGRAM_TOKEN = os.getenv("BOT_TOKEN")
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("👋 سلام! به بات سرمایه‌گذاری مهدی خوش آمدی. برای دریافت پیشنهاد، /suggest رو بزن.")
